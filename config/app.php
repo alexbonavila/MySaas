@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => 'http://localhost',
 
     /*
     |--------------------------------------------------------------------------
@@ -156,6 +156,12 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        # Providers installed below are installed by acacha llum:
+        # https://github.com/acacha/llum
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
+        #llum_providers
+
     ],
 
     /*
@@ -201,6 +207,11 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        # Alias installed below are installed by acacha llum:
+        # https://github.com/acacha/llum
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        #llum_aliases
 
     ],
 
