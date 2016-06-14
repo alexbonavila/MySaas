@@ -26,8 +26,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
     public function profile($profileCreator)
     {
         return $profileCreator->show($this);
+    }
+
+    public function shoutOuts()
+    {
+        return $this->hasMany('App\ShoutOut');
     }
 }

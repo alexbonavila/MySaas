@@ -16,4 +16,5 @@ elixir(function(mix) {
     mix.less('admin-lte/AdminLTE.less');
     mix.less('bootstrap/bootstrap.less');
     mix.styles(["pricingtables.css"]);
+    mix.scripts(['notifications-shotout.js']);
 });

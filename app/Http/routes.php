@@ -71,4 +71,7 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('profile', 'ProfileController@show');
 
+    Route::get('shotout', 'ShotOutController@index');
+    Route::post('shoutout', 'ShotOutController@shotout');
+
 });
