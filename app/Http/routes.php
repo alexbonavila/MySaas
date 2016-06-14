@@ -41,4 +41,11 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('sendpushnotify', function(){
         return view('pushnotify.sendpushnotify');
     });
+
+    Route::get('plans', 'PlansController@index');
+    Route::get('register_subsciption', function(){
+        return view('auth.register_subsciption');
+    });
+    Route::post('subscription_payment', 'SubscriptionController@subscribe');
+
 });

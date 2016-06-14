@@ -157,6 +157,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Laravel\Socialite\SocialiteServiceProvider::class,
+        Laravel\Cashier\CashierServiceProvider::class,
 
         /*
          * Acacha AdminLTE template provider
