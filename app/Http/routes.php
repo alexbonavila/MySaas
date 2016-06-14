@@ -60,5 +60,5 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('reports/dailySales', 'ReportsController@dailySales');
 
-    Route::get('reports/downloadInvoice', 'PDFController@downloadInvoice');
+    Route::get('reports/downloadInvoice', 'PDFController@invoiceHtml');
 });
