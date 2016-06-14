@@ -2,7 +2,7 @@
     <div class="alert alert-success" style="display:none" id="stripe_status">
         Ok! Now please register!
     </div>
-    <form action="{{url('subscription_payment')}}" method="POST" id="payment-form">
+    <form action="" method="POST" id="payment-form">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <span class="payment-errors"></span>
         <p class="login-box-msg"> Bank Account Data</p>

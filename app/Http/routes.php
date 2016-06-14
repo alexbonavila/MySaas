@@ -10,10 +10,10 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
+//
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +26,15 @@ Route::get('/', function () {
 |
 */
 
+App::bind('Flash',App\Http\Flash::class);
+
 Route::group(['middleware' => ['web']], function () {
+
+    Route::get('/',['as' => 'welcome', function () {
+        return view('welcome');
+    }]);
+
+
     Route::get('auth/{provider}', 'Auth\SocialAuthController@redirectToAuthenticationServiceProvider');
     Route::get('auth/{provider}/callback', 'Auth\SocialAuthController@handleAuthenticationServiceProviderCallback');
 //    Route::get('auth/github', 'Auth\AuthController@redirectToGithubProvider');
@@ -46,6 +54,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('register_subsciption', function(){
         return view('auth.register_subsciption');
     });
-    Route::post('subscription_payment', 'SubscriptionController@subscribe');
+    Route::post('registerAndSubscribeToStripe', 'Auth\AuthController@registerAndSubscribeToStripe');
+
+    Route::post('sendContactEmail','ContactEmailController@send');
 
 });

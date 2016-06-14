@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Auth;
+use Illuminate\Http\Request;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -69,4 +71,25 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+
+    protected function subscribeToStripe($creditCardToken, User $user)
+    {
+        $user->newSubscription('ID03', 'ID03')
+            ->create($creditCardToken);
+    }
+    protected function registerAndSubscribeToStripe(Request $request) {
+        $validator = $this->validator($request->all());
+        if ($validator->fails()) {
+            $this->throwValidationException(
+                $request, $validator
+            );
+        }
+        Auth::guard($this->getGuard())->login($this->create($request->all()));
+        $creditCardToken = $request->input('stripeToken');
+        $user = Auth::user();
+        $this->subscribeToStripe($creditCardToken,$user);
+        return redirect($this->redirectPath());
+    }
+
 }

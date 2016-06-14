@@ -155,6 +155,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\FlashServiceProvider::class,
 
         Laravel\Socialite\SocialiteServiceProvider::class,
         Laravel\Cashier\CashierServiceProvider::class,
@@ -218,6 +219,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Flash' => App\Facades\Flash::class,
         /*
          * Acacha AdminLTE template alias
          */
