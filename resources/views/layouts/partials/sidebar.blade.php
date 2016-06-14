@@ -39,7 +39,7 @@
             <li><a href="{{url('sendpushnotify')}}"><i class='fa fa-link'></i> <span>Send Push Notify</span></a></li>            <li class="treeview">
                 <a href="{{url('reports')}}"><i class='fa fa-link'></i> <span>Reports</span> <i class="fa fa-angle-left pull-right"></i></a>                <ul class="treeview-menu">
                     <li><a href="{{url('reports/dailySales')}}">Daily Sales Report</a></li>
-                    <li><a href="#">Link in level 2</a></li>
+                    <li><a href="{{url('reports/downloadInvoice')}}">Download Invoice PDF</a></li>
                 </ul>
             </li>
         </ul><!-- /.sidebar-menu -->

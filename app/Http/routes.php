@@ -59,4 +59,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('sendContactEmail','ContactEmailController@send');
 
     Route::get('reports/dailySales', 'ReportsController@dailySales');
+
+    Route::get('reports/downloadInvoice', 'PDFController@downloadInvoice');
 });
