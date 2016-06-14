@@ -63,4 +63,10 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('reports/downloadInvoice', 'PDFController@invoiceHtml');
 
     Route::get('reports/createInvoice', 'CreateInvoiceController@index');
+
+    Route::get('users', 'UsersController@index');
+    Route::post('users', 'UsersController@store');
+    Route::delete('users', 'UsersController@delete');
+    Route::put('users', 'UsersController@update');
+
 });
