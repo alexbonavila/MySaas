@@ -1,12 +1,17 @@
 <?php
 namespace App\Http\Controllers;
 use DOMPDF;
-use Illuminate\Http\Request;
 use App\Http\Requests;
-use Symfony\Component\HttpFoundation\Response;
+use Response;
+use View;
 class PDFController extends Controller
 {
     public function invoiceHtml()
+    {
+        $data = $this->getData();
+        return view('receipt',$data);
+    }
+    public function downloadInvoice(array $data)
     {
         if (! defined('DOMPDF_ENABLE_AUTOLOAD')) {
             define('DOMPDF_ENABLE_AUTOLOAD', false);
@@ -14,18 +19,18 @@ class PDFController extends Controller
         if (file_exists($configPath = base_path().'/vendor/dompdf/dompdf/dompdf_config.inc.php')) {
             require_once $configPath;
         }
-        $dompdf = new DOMPDF;
-
-        $dompdf->load_html("<h1>Hola</h1>");
+        $dompdf = new Dompdf();
+        $dompdf->load_html($this->view($this->getData())->render());
         $dompdf->render();
         return $this->download($dompdf->output());
-
     }
+
     /**
      * Create an invoice download response.
      *
-     * @param  array   $data
+     * @param $pdf
      * @return \Symfony\Component\HttpFoundation\Response
+     * @internal param array $data
      */
     public function download($pdf)
     {
@@ -36,5 +41,34 @@ class PDFController extends Controller
             'Content-Transfer-Encoding' => 'binary',
             'Content-Type' => 'application/pdf',
         ]);
+    }
+    /**
+     * Get the View instance for the invoice.
+     *
+     * @param  array  $data
+     * @return \Illuminate\View\View
+     */
+    public function view(array $data)
+    {
+        return View::make('receipt', $data);
+    }
+    private function getData()
+    {
+        $descriptions = ["description1", "description2"];
+        $subscriptions = [15, 125, 37, 241];
+        $data = [
+            'vendor' => 'PROVA',
+            'user' => 'Alex Bonavila',
+            'email' => 'alexbonavila@iesebre.com',
+            'name' => 'Alex Bonavila',
+            'product' => 'Producte1',
+            'descriptions' => $descriptions,
+            'subscriptions' => $subscriptions,
+            'hasDiscount' => true,
+            'discount' => "20%",
+            'tax_percent' => "23%",
+            'tax' => "456"
+        ];
+        return $data;
     }
 }
