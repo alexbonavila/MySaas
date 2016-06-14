@@ -69,4 +69,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::delete('users', 'UsersController@delete');
     Route::put('users', 'UsersController@update');
 
+
+
 });
