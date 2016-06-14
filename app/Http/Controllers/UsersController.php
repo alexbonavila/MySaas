@@ -26,7 +26,7 @@ class UsersController extends Controller
 
     public function store()
     {
-        User::create(['name' =>'Pepe', 'email' => 'pepe@pepitor.com']);
+        User::create(['name' =>'Pepe', 'email' => 'pepe@mail.com']);
         $this->fireUserHasChanged();
     }
 
